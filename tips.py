@@ -32,3 +32,44 @@ print(my_list[2][1])
 # Grab the target
 my_list = [1,2,3,[4,5,['target']]]
 print(my_list[3][2][0])
+
+# Grab key list 'key3' and return item 3 from that list
+d = {'key1':[1,2,3],'key2':[4,5,6],'key3':[7,8,9]}
+print(d['key3'][2])
+
+# Grab the list from key3 and make a list variable with it
+my_list = d['key3']
+print(my_list)
+
+# Nested Dict, grab 2
+d = {'k1':{'innerkey':[1,2,3]}}
+print(d['k1']['innerkey'][1])
+
+# assigning new tuple items vs items in a list
+my_list[0] = 'new' # this works
+
+#you cannot change a tuple item, it is immutable
+tuple = (1,2,3)
+# tuple[0] = 5 | this does not
+
+# A set uses {} like a dict, but has no colons and no duplicates
+s = {1,1,1,2,2,2,3,3,3,4,4,5,6,7,7,8,8,8,8}
+print(s) # sets do not duplicate, so it returns "{1, 2, 3, 4, 5, 6, 7, 8}"
+
+print(set([1,1,1,2,2,3,4,5,6,7,7,8]))
+
+# Add 6 to the set
+s = {1,2,3,4,5}
+print(s)
+s.add(6)
+print(s)
+
+# Elif will only print the FIRST true statement unless false
+if 1 == 2:
+    print('1')
+elif 4 == 4: # first true elif, so this is the only print
+    print('2')
+elif 1 == 9:
+    print('3')
+else:
+    print('4')
