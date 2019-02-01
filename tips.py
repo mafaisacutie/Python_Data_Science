@@ -25,7 +25,7 @@ print(my_list)
 my_list[0] = 'new'
 print(my_list)
 
-# Grab the numnber 4
+# Grab the number 4
 my_list = [1,2,[3,4]]
 print(my_list[2][1])
 
