@@ -73,3 +73,41 @@ elif 1 == 9:
     print('3')
 else:
     print('4')
+print("\n")
+print("\n")
+
+# for loop
+i = 1
+while i < 5:
+    print('i is: {}'.format(i))
+    i += 1
+
+# for loop range
+for x in list(range(0,5)):
+    print(x)
+
+# list comp
+x = [1,2,3,4]
+out = []
+for num in x:
+    out.append(num**2)
+print(out)
+# Same thing with list comp
+print([num**2 for num in x])
+
+# functions
+def my_func(name='Default Name'):
+    print('hello '+name)
+my_func()
+my_func('Jose')
+
+def square(num):
+    # basically a definition[]
+    """
+    THIS IS A DOCSTRING.
+    CAN GO OVER MULTIPLE LINES.
+    THIS FUNCTION SQUARES A NUMBER.
+    """
+    return num**2
+output = square(2)
+print(output)
