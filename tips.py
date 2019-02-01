@@ -111,3 +111,53 @@ def square(num):
     return num**2
 output = square(2)
 print(output)
+
+# map()
+def times2(var):
+    return var*2
+# this func on one line
+def times2(var): return var*2
+# this func can be written into lambda like so
+lambda var:var*2
+# or
+t = lambda var:var*2
+
+seq = [1,2,3,4,5]
+print(map(times2, seq))
+print(list(map(times2, seq)))
+print(list(map(lambda num: num*3, seq)))
+
+# filter
+i = filter(lambda num: num%2 == 0, seq)
+i = list(i)
+print(i)
+
+s = 'hello my name is Sam'
+s = s.split()
+print(s)
+
+tweet = 'Go Sports! #Sports'
+tweet = tweet.split('#')[1]
+print(tweet)
+
+d = {'k1':1,'k2':2}
+print(d.keys())
+print(d.items())
+print(d.values())
+
+lst = [1,2,3,4,5]
+item = lst.pop()
+print(lst)
+print(item)
+first = lst.pop(0)
+print(first)
+
+print('x' in [1,2,3])
+print('x' in ['x','y','z'])
+
+# tuple unpacking
+x = [(1,2), (3,4), (5,6)]
+for (a,b) in x:
+    print(a)
+for (a,b) in x:
+    print(b)
