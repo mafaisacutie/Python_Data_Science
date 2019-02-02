@@ -13,6 +13,8 @@ arr = np.ones(10)
 slices_of_arr = arr[:]
 slices_of_arr[:] = 5
 print(arr)
+# correct answer
+# np.zeros(10) + 5
 
 # Create an array of the integers from 10 to 50
 arr = np.arange(10,51)
@@ -25,6 +27,8 @@ print(arr)
 # Create a 3x3 matrix with values ranging from 0 to 8
 arr = np.arange(0,9).reshape(3,3)
 print(arr)
+# correct answer
+# arr = np.arange(9).reshape(3,3)
 
 # Create a 3x3 identity matrix
 arr = np.eye(3)
@@ -51,6 +55,8 @@ print(arr)
 #  [ 0.91,  0.92,  0.93,  0.94,  0.95,  0.96,  0.97,  0.98,  0.99,  1.  ]]
 arr = np.arange(0.01,1.01,0.01)
 print(arr)
+# correct answer
+# np.linspace(0.01,100).reshape(10,10)
 
 # Create an array of 20 linearly spaced points between 0 and 1:
 # [ 0.        ,  0.05263158,  0.10526316,  0.15789474,  0.21052632,
@@ -67,27 +73,33 @@ print(arr)
 #  [11, 12, 13, 14, 15]
 #  [16, 17, 18, 19, 20]
 #  [21, 22, 23, 24, 25]]
+arr = np.arange(1,26).reshape(5,5)
 
 # output
 # [[12, 13, 14, 15]
 #  [17, 18, 19, 20]
 #  [22, 23, 24, 25]]
-arr = np.arange(1,26).reshape(5,5)
 print(arr[2:,1:])
 
 # output
 # 20
 print(arr[(3,4)])
+# correct answer
+# arr[3,4]
 
 # output
 # [[ 2]
 #  [ 7]
 #  [12]]
 print(arr[0:3,1])
+# correct answer
+# arr[:3,1:2]
 
 # output
 # [21, 22, 23, 24, 25]
 print(arr[4])
+# correct answer
+# arr[4:]
 
 print("\n")
 
@@ -95,9 +107,13 @@ print("\n")
 # [[16, 17, 18, 19, 20]
 #  [21, 22, 23, 24, 25]]
 print(arr[3:])
+# correct answer
+# arr[3:5,:]
 
 # Get the sum of all the values in arr
 print(np.sum(arr))
+# also
+# arr.sum()
 
 # Get the standard deviation of the values in arr
 print(arr.std())
