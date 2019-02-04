@@ -207,3 +207,56 @@ print(df.set_index('States'))
 # CO      0.190794  1.978757  2.605967  0.683509
 # THIS WAS NOT INPLACE, THEREFORE THE DATA IS THE SAME
 print(df)
+
+
+########## MULTI INDEXING ##########
+
+# Index Levels
+outside = ['G1','G1','G1','G2','G2','G2']
+inside = [1,2,3,1,2,3]
+hier_index = list(zip(outside,inside))
+hier_index = pd.MultiIndex.from_tuples(hier_index)
+###########
+
+# Multi Level Index
+df = pd.DataFrame(randn(6,2),hier_index,['A','B'])
+print(df)
+# returns
+#              A         B
+# G1 1  0.302665  1.693723
+#    2 -1.706086 -1.159119
+#    3 -0.134841  0.390528
+# G2 1  0.166905  0.184502
+#    2  0.807706  0.072960
+#    3  0.638787  0.329646
+
+print(df.loc['G1'].loc[1])
+# returns
+# A    0.302665
+# B    1.693723
+# Name: 1, dtype: float64
+
+df.index.names = ['Groups','Nums']
+print(df)
+# returns
+# Groups Nums
+# G1     1     0.302665  1.693723
+#        2    -1.706086 -1.159119
+#        3    -0.134841  0.390528
+# G2     1     0.166905  0.184502
+#        2     0.807706  0.072960
+#        3     0.638787  0.329646
+
+# grab the value: 0.072960
+print(df.loc['G2'].loc[2]['B'])
+
+# grab the value: -0.134841
+print(df.loc['G1'].loc[3]['A'])
+
+##### CROSS SECTION #####
+print(df.xs(1,level='Nums'))
+# returns
+#                A         B
+# Groups
+# G1      0.302665  1.693723
+# G2      0.166905  0.184502
