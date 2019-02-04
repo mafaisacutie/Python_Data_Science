@@ -103,3 +103,107 @@ print(df.loc[['b','d'],['x','y']])
 #           x         y
 # b -0.319318 -0.848077
 # d -0.758872 -0.933237
+
+print(df > 0) # this will return a boolean of where each value is greater than zero
+# returns
+#        w      x      y      z
+# a   True   True   True   True
+# b   True  False  False   True
+# c  False   True   True  False
+# d   True  False  False   True
+# e   True   True   True   True
+
+booldf = df > 0
+print(df[booldf]) # this will print out the values where ture and NaN where False
+#           w         x         y         z
+# a  2.706850  0.628133  0.907969  0.503826
+# b  0.651118       NaN       NaN  0.605965
+# c       NaN  0.740122  0.528813       NaN
+# d  0.188695       NaN       NaN  0.955057
+# e  0.190794  1.978757  2.605967  0.683509
+
+# same thing
+print(df[df>0])
+
+print(df['w']>0) # this will return the 'w' series with boolean of true is greater than 0 and false else
+# returns
+# a     True
+# b     True
+# c    False
+# d     True
+# e     True
+# Name: w, dtype: bool
+
+print(df[df['w']>0]) # prints only rows that is greater than 0 under column 'w'
+# returns
+#           w         x         y         z
+# a  2.706850  0.628133  0.907969  0.503826
+# b  0.651118 -0.319318 -0.848077  0.605965
+# d  0.188695 -0.758872 -0.933237  0.955057
+# e  0.190794  1.978757  2.605967  0.683509
+
+# grab all the rows in the dataframe where z < 0
+print(df[df['z']<0])
+# returns
+#           w         x         y         z
+# c -2.018168  0.740122  0.528813 -0.589001
+
+# grab where 'w' is greater than 0, then grab columns 'y' 'x'
+boolser = df['w']>0
+result = df[boolser]
+mycols = ['y','x']
+print(result[mycols])
+# MORE EFFECIENT WAY
+print(df[df['w']>0][['y','x']]) # df where df column 'w' is greater than 0, print columns 'y' and then 'x'
+# returns
+#           y         x
+# a  0.907969  0.628133
+# b -0.848077 -0.319318
+# d -0.933237 -0.758872
+# e  2.605967  1.978757
+
+# grab where x < 0 and print columns 'w' and 'z'
+print(df[df['x']<0][['w','z']])
+# returns
+#           w         z
+# b  0.651118  0.605965
+# d  0.188695  0.955057
+
+############ MULTIPLE CONDITIONAL SELECTION ####################
+# IF YOU GET ERROR ambiguos THAT IS MOST LIKELY CAUSED BY USING 'and' INSTEAD OF '&' OR 'or' INSTEAD OF '|' #
+# grab where 'w' > 0 and 'y' greater than 1
+print(df[(df['w']>0)&(df['y']>1)])
+# returns
+#           w         x         y         z
+# e  0.190794  1.978757  2.605967  0.683509
+
+
+# INDEXING
+
+# to reset index to numerical value
+df.reset_index() # this will not overwrite current dataframe unless we specify inplace=True ex: df.reset_index(inplace=True)
+
+# adding a column named 'States' with the index of 'newind'
+newind = 'CA NY WY OR CO'.split() # .split() is sliting the blank space wot make a list
+df['States'] = newind
+print(df)
+# returns
+#           w         x         y         z States
+# a  2.706850  0.628133  0.907969  0.503826     CA
+# b  0.651118 -0.319318 -0.848077  0.605965     NY
+# c -2.018168  0.740122  0.528813 -0.589001     WY
+# d  0.188695 -0.758872 -0.933237  0.955057     OR
+# e  0.190794  1.978757  2.605967  0.683509     CO
+
+# set states as index as long as states is a column
+print(df.set_index('States'))
+# returns
+#                w         x         y         z
+# States
+# CA      2.706850  0.628133  0.907969  0.503826
+# NY      0.651118 -0.319318 -0.848077  0.605965
+# WY     -2.018168  0.740122  0.528813 -0.589001
+# OR      0.188695 -0.758872 -0.933237  0.955057
+# CO      0.190794  1.978757  2.605967  0.683509
+# THIS WAS NOT INPLACE, THEREFORE THE DATA IS THE SAME
+print(df)
